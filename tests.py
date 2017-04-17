@@ -169,9 +169,11 @@ class TestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    exit_code=0
     try:
         unittest.main()
     except:
+        exit_code=1
         pass
     cov.stop()
     cov.save()
@@ -180,3 +182,4 @@ if __name__ == '__main__':
     print "\nHTML version: " + os.path.join(basedir, "tmp/coverage/index.html")
     cov.html_report(directory='tmp/coverage')
     cov.erase()
+    exit(exit_code)
