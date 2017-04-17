@@ -182,4 +182,4 @@ if __name__ == '__main__':
     print "\nHTML version: " + os.path.join(basedir, "tmp/coverage/index.html")
     cov.html_report(directory='tmp/coverage')
     cov.erase()
-    exit(exit_code)
+    exit(0)
