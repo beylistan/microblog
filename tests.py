@@ -163,17 +163,15 @@ class TestCase(unittest.TestCase):
         db.session.delete(p)
         db.session.commit()
 
-#     def test_translation(self):
-#         assert microsoft_translate(u'English', 'en', 'es') == u'Inglés'
-#         assert microsoft_translate(u'Español', 'es', 'en') == u'Spanish'
+    def test_translation(self):
+        assert microsoft_translate(u'English', 'en', 'es') == u'Inglés'
+        assert microsoft_translate(u'Español', 'es', 'en') == u'Spanish'
 
 
 if __name__ == '__main__':
-    exit_code=0
     try:
         unittest.main()
     except:
-        exit_code=1
         pass
     cov.stop()
     cov.save()
@@ -182,4 +180,3 @@ if __name__ == '__main__':
     print "\nHTML version: " + os.path.join(basedir, "tmp/coverage/index.html")
     cov.html_report(directory='tmp/coverage')
     cov.erase()
-    exit(0)
