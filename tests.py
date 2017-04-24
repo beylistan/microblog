@@ -15,8 +15,11 @@ from app import app, db
 from app.models import User, Post
 from app.translate import microsoft_translate
 
+globalFail = False
 
 class TestCase(unittest.TestCase):
+    currentResult = None
+
     def setUp(self):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
@@ -24,9 +27,16 @@ class TestCase(unittest.TestCase):
             os.path.join(basedir, 'test.db')
         db.create_all()
 
+    def run(self, result=None):
+        self.currentResult = result
+        unittest.TestCase.run(self, result)
+
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        if (self.currentResult.wasSuccessful() != True):
+            global globalFail
+            globalFail = True
 
     def test_user(self):
         # make valid nicknames
@@ -164,17 +174,15 @@ class TestCase(unittest.TestCase):
         db.session.delete(p)
         db.session.commit()
 
-#     def test_translation(self):
-#         assert microsoft_translate(u'English', 'en', 'es') == u'Inglés'
-#         assert microsoft_translate(u'Español', 'es', 'en') == u'Spanish'
+    def test_translation(self):
+        assert microsoft_translate(u'English', 'en', 'es') == u'Inglés'
+        assert microsoft_translate(u'Español', 'es', 'en') == u'Spanish'
 
 
 if __name__ == '__main__':
-    exit_code = 0
     try:
         unittest.main()
     except:
-        exit_code = 1
         pass
     cov.stop()
     cov.save()
@@ -183,4 +191,5 @@ if __name__ == '__main__':
     print "\nHTML version: " + os.path.join(basedir, "tmp/coverage/index.html")
     cov.html_report(directory='tmp/coverage')
     cov.erase()
-    sys.exit(exit_code)
+    if globalFail:
+      sys.exit(1)
