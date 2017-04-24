@@ -6,6 +6,7 @@ cov = coverage(branch=True, omit=['flask/*', 'tests.py'])
 cov.start()
 
 import os
+import sys
 import unittest
 from datetime import datetime, timedelta
 
