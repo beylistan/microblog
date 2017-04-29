@@ -48,7 +48,7 @@ Projects to build: configure-opsworks(CD)
 
 3. configure-opsworks(CD)
 
-# aws opsworks provide ability to use CM: Cheif-solo on deploy step from scratch. 
+#aws opsworks provide ability to use CM: Cheif-solo on deploy step from scratch. 
 
 Get stack id and check it on existance if not exist create and run stack.
 On this step in json specifying nessesary data for creating stack note that here you can find url to github:
