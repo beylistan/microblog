@@ -33,7 +33,7 @@ Any referenced Docker image can trigger this job
 Specified repositories will trigger this job: beylistan/microblog_rc.
 In Docker Hub specified web hook: 
 microblog_rc_webhook
-http://34.200.250.184:8080/dockerhub-webhook/notify
+http://34.205.45.100:8080/dockerhub-webhook/notify
 
 Project Build:
 
@@ -68,7 +68,10 @@ SSH Agent: Specific credentials based on Specific credentials: Jenkins Credentia
 
 Get stackid, destenation deploy instance ip, deployment id.
 Wait untill opsworks complete deployment.
-Run chef-solo with recipe microblog on destenation deploy host
+Run chef-solo with recipe microblog on destenation deploy host:
+
+Currently web-service running on:
+ec2-34-207-101-17.compute-1.amazonaws.com
 
 Thats it.
 
