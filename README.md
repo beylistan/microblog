@@ -4,7 +4,7 @@ Here you can find short description of CI/D flow of my progect.
 
 I've installed Jenkins on ec2 in aws cloud, you can have access to this node by:
 
-http://34.200.250.184:8080
+http://34.205.45.100:8080
 Credentials in email.
 
 Jobs in Jenkins:
